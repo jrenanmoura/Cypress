@@ -19,7 +19,10 @@ describe('cadastro', () => {
           complemento: 'apt 07',
           bairro:'Jardim do Lago',
           cidade_uf:'São Paulo/SP'
-        }
+        },
+
+        metodo_entrega:'Moto',
+        cnh: 'cnh-digital.jpg'
       }
 
       cy.get('input[name="name"]').type(cadastro.nome)
@@ -37,6 +40,9 @@ describe('cadastro', () => {
       cy.get('input[name="city-uf"]').should('have.text', cadastro.endereco.cidade_uf)
 
     })
+
+    cy.contains('.delivery-method li ', cadastro.metodo_entrega).click()
+    cy.get('input[accept^="image"]').attach.File('/imagens/' + entregador.cnh)
 
   
 })
