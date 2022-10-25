@@ -1,0 +1,14 @@
+{
+  "name": "node-server",
+  "version": "1.0.0",
+  "description": "rodando js no servidor",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Renan Moura",
+  "license": "MIT",
+  "dependencies": {
+    "server": "^1.0.37"
+  }
+}

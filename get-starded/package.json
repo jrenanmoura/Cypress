@@ -1,0 +1,22 @@
+{
+  "name": "get-starded",
+  "version": "1.0.0",
+  "description": "primeiro exemplo com cypress",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx cypress open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "Cypress"
+  },
+  "keywords": [
+    "Qa",
+    "cypress"
+  ],
+  "author": "Renan Moura",
+  "license": "MIT",
+  "devDependencies": {
+    "cypress": "^10.7.0"
+  }
+}
