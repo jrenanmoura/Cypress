@@ -1,11 +1,10 @@
+import SingupPage from '../pages/singupPage'
+
+
+
 describe('cadastro', () => {
     it('seja um entregador', () => {
-      cy.viewport(1440, 900)
-      cy.visit('https://buger-eats.vercel.app')
       
-      cy.get('a[href="/deliver"]').click()
-      cy.get('#page-deliver form h1').should('have.text','Cadastre-se para  fazer entregas')
-
 
       var cadastro =  {
         nome:'Renan',
@@ -25,31 +24,17 @@ describe('cadastro', () => {
         cnh: 'cnh-digital.jpg'
       }
 
-      cy.get('input[name="name"]').type(cadastro.nome)
-      cy.get('input[name="cpf"]').type(cadastro.cpf)
-      cy.get('input[name="email"]').type(cadastro.email)
-      cy.get('input[name="whatsapp"]').type(cadastro.whatsapp)
 
-      cy.get('input[name="postalcode"]').type(cadastro.endereco.cep)
-      cy.get('input[type=button][value="Buscar CEP"]').click()
-      cy.get('input[name="address-number"]').type(cadastro.endereco.numero)
-      cy.get('input[name="address-details"]').type(cadastro.endereco.complemento)
+      const expectMessage = 'Recebemos os seus dados. Fique de olho na sua caixa de email, pois e em breve retornamos o contato.'
 
-      cy.get('input[name="address"]').should('have.value', cadastro.endereco.rua)
-      cy.get('input[name="district"]').should('have.value', cadastro.endereco.bairro)
-      cy.get('input[name="city-uf"]').should('have.value', cadastro.endereco.cidade_uf)
 
-      cy.contains('.delivery-method li', cadastro.metodo_entrega).click()
-      
+      var singUp = new SingupPage()
 
-      cy.get('input[accept^="image/*"]').attachFile('/images/' + cadastro.cnh)
-
-      cy.get('button[type="submit"]').click()
-
-     const expectMessage = 'Recebemos os seus dados. Fique de olho na sua caixa de email, pois e em breve retornamos o contato.'
-
-      cy.get('div[class=swal2-html-container]').should('have.text', expectMessage)
-
+      singUp.go()
+      singUp.fillForm(cadastro)
+      singUp.submit()
+      singUp.modalContentShouldBe(expectMessage)
+     
 
     })
 
@@ -79,28 +64,12 @@ describe('cadastro', () => {
         cnh: 'cnh-digital.jpg'
       }
 
-      cy.get('input[name="name"]').type(cadastro.nome)
-      cy.get('input[name="cpf"]').type(cadastro.cpf)
-      cy.get('input[name="email"]').type(cadastro.email)
-      cy.get('input[name="whatsapp"]').type(cadastro.whatsapp)
+      var singUp = new SingupPage()
 
-      cy.get('input[name="postalcode"]').type(cadastro.endereco.cep)
-      cy.get('input[type=button][value="Buscar CEP"]').click()
-      cy.get('input[name="address-number"]').type(cadastro.endereco.numero)
-      cy.get('input[name="address-details"]').type(cadastro.endereco.complemento)
-
-      cy.get('input[name="address"]').should('have.value', cadastro.endereco.rua)
-      cy.get('input[name="district"]').should('have.value', cadastro.endereco.bairro)
-      cy.get('input[name="city-uf"]').should('have.value', cadastro.endereco.cidade_uf)
-
-      cy.contains('.delivery-method li', cadastro.metodo_entrega).click()
-      
-
-      cy.get('input[accept^="image/*"]').attachFile('/images/' + cadastro.cnh)
-
-      cy.get('button[type="submit"]').click()
-
-      cy.get( '.alert-error').should('have.text', 'Oops! CPF inválido')
+      singUp.go()
+      singUp.fillForm(cadastro)
+      singUp.submit()
+      singUp.alertMessageShouldBe('Oops! CPF inválido')      
 
     
 
