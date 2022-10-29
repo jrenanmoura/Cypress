@@ -1,3 +1,6 @@
+
+import massaDeTeste from'../pages/massaDeTeste'
+
 class SingupPage{
 
     go(){
@@ -10,7 +13,7 @@ class SingupPage{
 
     fillForm(cadastro){
            
-      cy.get('input[name="name"]').type(cadastro.nome)
+      cy.get('input[name="fullName"]').type(cadastro.nome)
       cy.get('input[name="cpf"]').type(cadastro.cpf)
       cy.get('input[name="email"]').type(cadastro.email)
       cy.get('input[name="whatsapp"]').type(cadastro.whatsapp)
