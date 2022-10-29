@@ -42,6 +42,15 @@ describe('cadastro', function(){
 
     })
 
+    it('Email inavlido', function(){
+      singUp.go()
+      singUp.fillForm(this.deliver.email_erro)
+      singUp.submit()
+      singUp.alertMessageShouldBe('Oops! Email com formato inválido.')      
+
+    
+    })
+
     
 
   

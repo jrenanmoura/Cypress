@@ -1,6 +1,3 @@
-
-import massaDeTeste from'../pages/massaDeTeste'
-
 class SingupPage{
 
     go(){
