@@ -11,7 +11,7 @@ class SingupPage{
 
     fillForm(cadastro){
            
-      cy.get('input[name="fullName"]').type(cadastro.nome)
+      cy.get('input[name="fullName"]').type(cadastro.name)
       cy.get('input[name="cpf"]').type(cadastro.cpf)
       cy.get('input[name="email"]').type(cadastro.email)
       cy.get('input[name="whatsapp"]').type(cadastro.whatsapp)
@@ -39,7 +39,8 @@ class SingupPage{
     }
 
     alertMessageShouldBe(expectMessage){
-        cy.get( '.alert-error').should('have.text', expectMessage)
+        // cy.get( '.alert-error').should('have.text', expectMessage)
+        cy.contains('.alert-error', expectMessage).should('be.visible')
     }
 
 
